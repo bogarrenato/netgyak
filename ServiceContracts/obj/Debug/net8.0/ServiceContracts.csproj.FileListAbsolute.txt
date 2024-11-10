@@ -1,0 +1,15 @@
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/bin/Debug/net8.0/ServiceContracts.deps.json
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/bin/Debug/net8.0/ServiceContracts.dll
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/bin/Debug/net8.0/ServiceContracts.pdb
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/bin/Debug/net8.0/Entities.dll
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/bin/Debug/net8.0/Entities.pdb
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ServiceContracts.csproj.AssemblyReference.cache
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ServiceContracts.GeneratedMSBuildEditorConfig.editorconfig
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ServiceContracts.AssemblyInfoInputs.cache
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ServiceContracts.AssemblyInfo.cs
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ServiceContracts.csproj.CoreCompileInputs.cache
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ServiceC.04662A29.Up2Date
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ServiceContracts.dll
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/refint/ServiceContracts.dll
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ServiceContracts.pdb
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ref/ServiceContracts.dll
