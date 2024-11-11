@@ -1,11 +1,39 @@
 {
   "Version": 1,
-  "Hash": "vizQGmpeY32a2CBIDbe5eqgH5naOqhsyPaW8bJPaRzc=",
+  "Hash": "Kb3iGLB9ZXxrkMgwzQI9SaPI7GntH3LOYXrdE02SLXs=",
   "Source": "MyWebApi",
   "BasePath": "_content/MyWebApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "MyWebApi/wwwroot",
+      "Source": "MyWebApi",
+      "ContentRoot": "/Users/macbookpro/Desktop/netgyak/MyWebApi/wwwroot/",
+      "BasePath": "_content/MyWebApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/macbookpro/Desktop/netgyak/MyWebApi/wwwroot/StyleSheet.css",
+      "SourceId": "MyWebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/macbookpro/Desktop/netgyak/MyWebApi/wwwroot/",
+      "BasePath": "_content/MyWebApi",
+      "RelativePath": "StyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/StyleSheet.css"
+    }
+  ]
 }

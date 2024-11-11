@@ -1827,7 +1827,10 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "Entities": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "8.0.8",
+          "ServiceContracts": "1.0.0",
+          "Services": "1.0.0",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "compile": {

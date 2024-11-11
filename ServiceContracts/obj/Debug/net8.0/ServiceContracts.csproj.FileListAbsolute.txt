@@ -13,3 +13,4 @@
 /Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/refint/ServiceContracts.dll
 /Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ServiceContracts.pdb
 /Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ref/ServiceContracts.dll
+/Users/macbookpro/Desktop/netgyak/ServiceContracts/obj/Debug/net8.0/ServiceContracts.sourcelink.json

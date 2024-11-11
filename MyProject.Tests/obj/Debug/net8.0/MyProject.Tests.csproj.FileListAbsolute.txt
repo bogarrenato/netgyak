@@ -115,3 +115,5 @@
 /Users/macbookpro/Desktop/netgyak/MyProject.Tests/bin/Debug/net8.0/Entities.pdb
 /Users/macbookpro/Desktop/netgyak/MyProject.Tests/bin/Debug/net8.0/ServiceContracts.pdb
 /Users/macbookpro/Desktop/netgyak/MyProject.Tests/bin/Debug/net8.0/Services.pdb
+/Users/macbookpro/Desktop/netgyak/MyProject.Tests/bin/Debug/net8.0/MyWebApi.staticwebassets.runtime.json
+/Users/macbookpro/Desktop/netgyak/MyProject.Tests/obj/Debug/net8.0/MyProject.Tests.sourcelink.json

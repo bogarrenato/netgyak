@@ -31,3 +31,13 @@
 /Users/macbookpro/Desktop/netgyak/MyWebApi/obj/Debug/net8.0/MyWebApi.pdb
 /Users/macbookpro/Desktop/netgyak/MyWebApi/obj/Debug/net8.0/MyWebApi.genruntimeconfig.cache
 /Users/macbookpro/Desktop/netgyak/MyWebApi/obj/Debug/net8.0/ref/MyWebApi.dll
+/Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/MyWebApi.staticwebassets.runtime.json
+/Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/Entities.dll
+/Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/ServiceContracts.dll
+/Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/Services.dll
+/Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/Entities.pdb
+/Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/Services.pdb
+/Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/ServiceContracts.pdb
+/Users/macbookpro/Desktop/netgyak/MyWebApi/obj/Debug/net8.0/MyWebApi.RazorAssemblyInfo.cache
+/Users/macbookpro/Desktop/netgyak/MyWebApi/obj/Debug/net8.0/MyWebApi.RazorAssemblyInfo.cs
+/Users/macbookpro/Desktop/netgyak/MyWebApi/obj/Debug/net8.0/MyWebApi.sourcelink.json

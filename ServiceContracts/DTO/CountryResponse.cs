@@ -44,7 +44,7 @@ public static class CountryExtensions
     {
         return new CountryResponse()
         {
-            CountryID = country.CountryId,
+            CountryID = country.CountryID,
             CountryName = country.CountryName
         };
     }

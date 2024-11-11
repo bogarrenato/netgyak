@@ -172,7 +172,17 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/macbookpro/Desktop/netgyak/Entities/Entities.csproj": {
+                "projectPath": "/Users/macbookpro/Desktop/netgyak/Entities/Entities.csproj"
+              },
+              "/Users/macbookpro/Desktop/netgyak/ServiceContracts/ServiceContracts.csproj": {
+                "projectPath": "/Users/macbookpro/Desktop/netgyak/ServiceContracts/ServiceContracts.csproj"
+              },
+              "/Users/macbookpro/Desktop/netgyak/Services/Services.csproj": {
+                "projectPath": "/Users/macbookpro/Desktop/netgyak/Services/Services.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
