@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/macbookpro/Desktop/netgyak/MyWebApi
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/macbookpro/Desktop/netgyak/MyWebApi/Views/Persons/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVyc29ucy9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/macbookpro/Desktop/netgyak/MyWebApi/Views/Persons/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVyc29ucy9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

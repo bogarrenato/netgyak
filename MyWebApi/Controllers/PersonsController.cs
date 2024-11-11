@@ -7,16 +7,19 @@ using System;
 
 namespace MyWebApi;
 
+[Route("persons")]
 public class PersonsController : Controller
 {
     private readonly IPersonsService _personsService;
+    private readonly ICountriesService _countriesService;
 
-    public PersonsController(IPersonsService personsService)
+    public PersonsController(IPersonsService personsService, ICountriesService countriesService)
     {
         _personsService = personsService;
+        _countriesService = countriesService;
     }
 
-    [Route("persons/index")]
+    [Route("index")]
     [Route("/")]
     public IActionResult Index(string searchBy, string? searchString, string sortBy = nameof(Person.PersonName), SortOrderOptions sortOrder = SortOrderOptions.ASC)
     {
@@ -45,11 +48,35 @@ public class PersonsController : Controller
 
 
     //Executes when the user clicks on the Create PErson hyperlink
-    [Route("persons/create")]
+    [Route("create")]
     [HttpGet]
     public IActionResult Create()
     {
+        List<CountryResponse> countries = _countriesService.GetAllCountries();
+        ViewBag.Countries = countries;
+
         return View();
+    }
+
+
+    [HttpPost]
+    [Route("create")]
+    public IActionResult Create(PersonAddRequest personAddRequest)
+    {
+        if (!ModelState.IsValid)
+        {
+            List<CountryResponse> countries = _countriesService.GetAllCountries();
+            ViewBag.Countries = countries;
+
+            ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            return View();
+        }
+
+        //call the service method
+        PersonResponse personResponse = _personsService.AddPerson(personAddRequest);
+
+        //navigate to Index() action method (it makes another get request to "persons/index"
+        return RedirectToAction("Index", "Persons");
     }
 
 }
