@@ -11,10 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews(); // Ezzel biztosítjuk a TempData és Views támogatását
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<ICountriesService, CountriesService>();
-builder.Services.AddSingleton<IPersonsService, PersonsService>();
+builder.Services.AddScoped<ICountriesService, CountriesService>();
+builder.Services.AddScoped<IPersonsService, PersonsService>();
 
-builder.Services.AddDbContext<PersonsDbContext>(options => { options.UseSqlServer(); });
+builder.Services.AddDbContext<PersonsDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
 

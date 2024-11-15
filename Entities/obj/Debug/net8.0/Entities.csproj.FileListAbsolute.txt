@@ -10,3 +10,6 @@
 /Users/macbookpro/Desktop/netgyak/Entities/obj/Debug/net8.0/Entities.pdb
 /Users/macbookpro/Desktop/netgyak/Entities/obj/Debug/net8.0/ref/Entities.dll
 /Users/macbookpro/Desktop/netgyak/Entities/obj/Debug/net8.0/Entities.sourcelink.json
+/Users/macbookpro/Desktop/netgyak/Entities/bin/Debug/net8.0/Entities.runtimeconfig.json
+/Users/macbookpro/Desktop/netgyak/Entities/obj/Debug/net8.0/Entities.csproj.AssemblyReference.cache
+/Users/macbookpro/Desktop/netgyak/Entities/obj/Debug/net8.0/Entities.genruntimeconfig.cache
