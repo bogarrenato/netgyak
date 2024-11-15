@@ -42,5 +42,11 @@ namespace Entities
                 modelBuilder.Entity<Person>().HasData(person); // Changed Country to Person
             }
         }
+
+        public List<Person> sp_GetAllPersons()
+        {
+            // Executes store procedure
+            return Persons.FromSqlRaw("EXECUTE [dbo].[GetAllPersons]").ToList();
+        }
     }
 }
