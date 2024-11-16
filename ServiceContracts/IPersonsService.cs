@@ -15,14 +15,14 @@ public interface IPersonsService
     /// </summary>
     /// <param name="personAddRequest"></param>
     /// <returns>Returns the same person details along with newly generated PersonID</returns>
-    PersonResponse AddPerson(PersonAddRequest? personAddRequest);
+    Task<PersonResponse> AddPerson(PersonAddRequest? personAddRequest);
 
 
     /// <summary>
     /// Returns all persons
     /// </summary>
     /// <returns>Returns a list of objects of PersonResponse type</returns>
-    List<PersonResponse> GetAllPersons();
+    Task<List<PersonResponse>> GetAllPersons();
 
 
 
@@ -31,7 +31,7 @@ public interface IPersonsService
     /// </summary>
     /// <param name="personID"></param>
     /// <returns>Matching person object</returns>
-    PersonResponse? GetPersonByPersonID(Guid? personID);
+    Task<PersonResponse?> GetPersonByPersonID(Guid? personID);
 
 
 
@@ -42,7 +42,7 @@ public interface IPersonsService
     /// <param name="searchBy">Search field to search</param>
     /// <param name="searchString">Search string to search</param>
     /// <returns>Returns all matching persons based on the given search field and search string</returns>
-    List<PersonResponse> GetFilteredPersons(string searchBy, string? searchString);
+    Task<List<PersonResponse>> GetFilteredPersons(string searchBy, string? searchString);
 
 
     /// <summary>
@@ -52,7 +52,7 @@ public interface IPersonsService
     /// <param name="sortBy">Name of the property based on which the person should be sorted</param>
     /// <param name="sortOrderOptions">ASC or DESC</param>
     /// <returns>Returns sorted persons as Response List</returns>
-    List<PersonResponse> GetSortedPersons(List<PersonResponse> allpersons, string sortBy, SortOrderOptions sortOrderOptions);
+    Task<List<PersonResponse>> GetSortedPersons(List<PersonResponse> allpersons, string sortBy, SortOrderOptions sortOrderOptions);
 
 
 
@@ -61,12 +61,12 @@ public interface IPersonsService
     /// </summary>
     /// <param name="personUpdateRequest">PErson details to update including personID</param>
     /// <returns>Person response object after updation</returns>
-    public PersonResponse UpdatePerson(PersonUpdateRequest? personUpdateRequest);
+    public Task<PersonResponse> UpdatePerson(PersonUpdateRequest? personUpdateRequest);
 
     /// <summary>
     ///    Deletes the person based on the given person ID
     /// </summary>
     /// <param name="personID"></param>
     /// <returns>Returns a boolean based on if the deletion was successful or not </returns>
-    public bool DeletePerson(Guid? personID);
+    public Task<bool> DeletePerson(Guid? personID);
 }

@@ -98,10 +98,9 @@ public static class PersonExtensions
             Gender = person.Gender,
             CountryID = person.CountryID,
             Age = (person.DateOfBirth != null) ? Math.Floor((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : null,
+            Country = person.Country?.CountryName,
         };
     }
-
-
 
 }
 

@@ -42,6 +42,30 @@ namespace Entities
             {
                 modelBuilder.Entity<Person>().HasData(person); // Changed Country to Person
             }
+
+            //Fluent API
+            modelBuilder.Entity<Person>().Property(p => p.TIN)
+                .HasColumnName("TaxIdentificationNumber")
+                //nvarchar would have bad impact on database - 2 bytes of characters
+                .HasColumnType("varchar(8)")
+                .HasDefaultValue("ABC12345");
+
+
+            // modelBuilder.Entity<Person>().HasIndex(temp => temp.TIN).IsUnique();
+            // modelBuilder.Entity<Person>().HasIndex(temp => temp.TIN).IsUnique().HasFilter("len([TIN]) = 8");
+
+            modelBuilder.Entity<Person>()
+         .HasCheckConstraint("CHK_TIN", "len([TaxIdentificationNumber]) = 8");
+
+            //Table relations
+            //Every Country has a set of persons
+            modelBuilder.Entity<Person>(entity=>{
+                entity.HasOne<Country>(p=>p.Country)
+                .WithMany(c=>c.Persons)
+                .HasForeignKey(p=>p.CountryID);
+            });
+           
+        
         }
 
         public List<Person> sp_GetAllPersons()
