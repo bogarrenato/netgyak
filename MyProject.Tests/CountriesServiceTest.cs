@@ -1,4 +1,5 @@
 ﻿using Entities;
+using EntityFrameworkCoreMock;
 using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using ServiceContracts.DTO;
@@ -12,7 +13,15 @@ public class CountriesServiceTest
 
     public CountriesServiceTest()
     {
-        _countriesService = new CountriesService(new PersonsDbContext(new DbContextOptionsBuilder<PersonsDbContext>().Options));
+        //New Empty list
+        var countriesInitialData = new List<Country>() { };
+        //Mock object for application db context
+        DbContextMock<ApplicationDbContext> dbContextMock = new DbContextMock<ApplicationDbContext>(new DbContextOptionsBuilder<ApplicationDbContext>().Options);
+        //Mocked - acts as original db context
+        ApplicationDbContext dbContext = dbContextMock.Object;
+        //We have to mock the DB set too..
+        dbContextMock.CreateDbSetMock(x => x.Countries, countriesInitialData);
+        _countriesService = new CountriesService(dbContext);
     }
 
 
@@ -53,7 +62,7 @@ public class CountriesServiceTest
     //When CountryName is duplicate it should throw ArgumentException
 
     [Fact]
-    public void AddCountry_DuplicateCountryName()
+    public async Task AddCountry_DuplicateCountryName()
     {
         //Arrange 
         CountryAddRequest? request1 = new CountryAddRequest() { CountryName = "USA" };
@@ -61,12 +70,12 @@ public class CountriesServiceTest
 
 
         //Assert
-        Assert.Throws<ArgumentException>(() =>
-        {
-            //Act
-            _countriesService.AddCountry(request1);
-            _countriesService.AddCountry(request2);
-        });
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
+         {
+             //Act
+             await _countriesService.AddCountry(request1);
+             await _countriesService.AddCountry(request2);
+         });
     }
 
 
