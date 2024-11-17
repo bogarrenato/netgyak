@@ -177,3 +177,6 @@
 /Users/macbookpro/Desktop/netgyak/MyProject.Tests/bin/Debug/net8.0/Moq.dll
 /Users/macbookpro/Desktop/netgyak/MyProject.Tests/bin/Debug/net8.0/Newtonsoft.Json.Bson.dll
 /Users/macbookpro/Desktop/netgyak/MyProject.Tests/bin/Debug/net8.0/Rotativa.AspNetCore.dll
+/Users/macbookpro/Desktop/netgyak/MyProject.Tests/bin/Debug/net8.0/AutoFixture.dll
+/Users/macbookpro/Desktop/netgyak/MyProject.Tests/bin/Debug/net8.0/Fare.dll
+/Users/macbookpro/Desktop/netgyak/MyProject.Tests/bin/Debug/net8.0/FluentAssertions.dll
