@@ -30,4 +30,8 @@
     <ProjectReference Include="..\Repositories\Repositories.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include ="MyProject.Tests" />
+  </ItemGroup>
+
 </Project>
