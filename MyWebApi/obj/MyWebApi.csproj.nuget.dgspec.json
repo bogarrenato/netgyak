@@ -99,6 +99,12 @@
               "/Users/macbookpro/Desktop/netgyak/Entities/Entities.csproj": {
                 "projectPath": "/Users/macbookpro/Desktop/netgyak/Entities/Entities.csproj"
               },
+              "/Users/macbookpro/Desktop/netgyak/Repositories/Repositories.csproj": {
+                "projectPath": "/Users/macbookpro/Desktop/netgyak/Repositories/Repositories.csproj"
+              },
+              "/Users/macbookpro/Desktop/netgyak/RepositoryContracts/RepositoryContracts.csproj": {
+                "projectPath": "/Users/macbookpro/Desktop/netgyak/RepositoryContracts/RepositoryContracts.csproj"
+              },
               "/Users/macbookpro/Desktop/netgyak/ServiceContracts/ServiceContracts.csproj": {
                 "projectPath": "/Users/macbookpro/Desktop/netgyak/ServiceContracts/ServiceContracts.csproj"
               },
@@ -161,6 +167,133 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/macbookpro/Desktop/netgyak/Repositories/Repositories.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/macbookpro/Desktop/netgyak/Repositories/Repositories.csproj",
+        "projectName": "Repositories",
+        "projectPath": "/Users/macbookpro/Desktop/netgyak/Repositories/Repositories.csproj",
+        "packagesPath": "/Users/macbookpro/.nuget/packages/",
+        "outputPath": "/Users/macbookpro/Desktop/netgyak/Repositories/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/macbookpro/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/macbookpro/Desktop/netgyak/Entities/Entities.csproj": {
+                "projectPath": "/Users/macbookpro/Desktop/netgyak/Entities/Entities.csproj"
+              },
+              "/Users/macbookpro/Desktop/netgyak/RepositoryContracts/RepositoryContracts.csproj": {
+                "projectPath": "/Users/macbookpro/Desktop/netgyak/RepositoryContracts/RepositoryContracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/macbookpro/Desktop/netgyak/RepositoryContracts/RepositoryContracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/macbookpro/Desktop/netgyak/RepositoryContracts/RepositoryContracts.csproj",
+        "projectName": "RepositoryContracts",
+        "projectPath": "/Users/macbookpro/Desktop/netgyak/RepositoryContracts/RepositoryContracts.csproj",
+        "packagesPath": "/Users/macbookpro/.nuget/packages/",
+        "outputPath": "/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/macbookpro/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/macbookpro/Desktop/netgyak/Entities/Entities.csproj": {
+                "projectPath": "/Users/macbookpro/Desktop/netgyak/Entities/Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -253,6 +386,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "/Users/macbookpro/Desktop/netgyak/RepositoryContracts/RepositoryContracts.csproj": {
+                "projectPath": "/Users/macbookpro/Desktop/netgyak/RepositoryContracts/RepositoryContracts.csproj"
+              },
               "/Users/macbookpro/Desktop/netgyak/ServiceContracts/ServiceContracts.csproj": {
                 "projectPath": "/Users/macbookpro/Desktop/netgyak/ServiceContracts/ServiceContracts.csproj"
               }

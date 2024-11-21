@@ -16,3 +16,5 @@
 /Users/macbookpro/Desktop/netgyak/Services/obj/Debug/net8.0/Services.pdb
 /Users/macbookpro/Desktop/netgyak/Services/obj/Debug/net8.0/ref/Services.dll
 /Users/macbookpro/Desktop/netgyak/Services/obj/Debug/net8.0/Services.sourcelink.json
+/Users/macbookpro/Desktop/netgyak/Services/bin/Debug/net8.0/RepositoryContracts.dll
+/Users/macbookpro/Desktop/netgyak/Services/bin/Debug/net8.0/RepositoryContracts.pdb

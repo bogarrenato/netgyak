@@ -21,38 +21,19 @@ public class PersonResponse
     public bool ReceiveNewsLetters { get; set; }
     public double? Age { get; set; }
 
-
-
     /// <summary>
-    /// Compares the current object data with the parameter object data
+    /// Compares the current object data with the parameter object
     /// </summary>
-    /// <param name="obj"></param>
-    /// <returns>True or false indicating whether all person details are matched with specified parameter</returns>
+    /// <param name="obj">The PersonResponse Object to compare</param>
+    /// <returns>True or false, indicating whether all person details are matched with the specified parameter object</returns>
     public override bool Equals(object? obj)
     {
-        if (obj == null)
-        {
-            return false;
-        }
+        if (obj == null) return false;
 
-        if (obj.GetType() != typeof(PersonResponse))
-        {
-            return false;
-        }
+        if (obj.GetType() != typeof(PersonResponse)) return false;
 
         PersonResponse person = (PersonResponse)obj;
-
-        return this.PersonID == person.PersonID
-            && this.PersonName == person.PersonName
-            && this.Email == person.Email
-            && this.DateOfBirth == person.DateOfBirth
-            && this.Gender == person.Gender
-            && this.CountryID == person.CountryID
-            && this.Country == person.Country
-            && this.Address == person.Address
-            && this.ReceiveNewsLetters == person.ReceiveNewsLetters
-            && this.Age == person.Age;
-
+        return PersonID == person.PersonID && PersonName == person.PersonName && Email == person.Email && DateOfBirth == person.DateOfBirth && Gender == person.Gender && CountryID == person.CountryID && Address == person.Address && ReceiveNewsLetters == person.ReceiveNewsLetters;
     }
 
     public override int GetHashCode()
@@ -62,45 +43,38 @@ public class PersonResponse
 
     public override string ToString()
     {
-        return $"PersonID: {PersonID}, PersonName: {PersonName}, Email: {Email}, DateOfBirth: {DateOfBirth}, ReceiveNewsLetters: {ReceiveNewsLetters}, Gender:{Gender}, CountryID: {CountryID}, Country: {Country}, Address: {Address}, Age: {Age}";
+        return $"Person ID: {PersonID}, Person Name: {PersonName}, Email: {Email}, Date of Birth: {DateOfBirth?.ToString("dd MMM yyyy")}, Gender: {Gender}, Country ID: {CountryID}, Country: {Country}, Address: {Address}, Receive News Letters: {ReceiveNewsLetters}";
     }
-
 
     public PersonUpdateRequest ToPersonUpdateRequest()
     {
-        return new PersonUpdateRequest()
-        {
-            PersonID = this.PersonID,
-            PersonName = this.PersonName,
-            Email = this.Email,
-            DateOfBirth = this.DateOfBirth,
-            Gender = (GenderOptions)Enum.Parse(typeof(GenderOptions), Gender, true),
-            Address = this.Address,
-        };
-
+        return new PersonUpdateRequest() { PersonID = PersonID, PersonName = PersonName, Email = Email, DateOfBirth = DateOfBirth, Gender = (GenderOptions)Enum.Parse(typeof(GenderOptions), Gender, true), Address = Address, CountryID = CountryID, ReceiveNewsLetters = ReceiveNewsLetters };
     }
 }
+
 
 public static class PersonExtensions
 {
     /// <summary>
-    /// An extension method to convert an object of Person class into PersonResponse Class
+    /// An extension method to convert an object of Person class into PersonResponse class
     /// </summary>
-    /// <param name="person"> Retruns the converted PersonResponse object</param>
+    /// <param name="person">The Person object to convert</param>
+    /// /// <returns>Returns the converted PersonResponse object</returns>
     public static PersonResponse ToPersonResponse(this Person person)
     {
+        //person => convert => PersonResponse
         return new PersonResponse()
         {
             PersonID = person.PersonID,
             PersonName = person.PersonName,
             Email = person.Email,
             DateOfBirth = person.DateOfBirth,
-            Gender = person.Gender,
+            ReceiveNewsLetters = person.ReceiveNewsLetters,
+            Address = person.Address,
             CountryID = person.CountryID,
-            Age = (person.DateOfBirth != null) ? Math.Floor((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : null,
-            Country = person.Country?.CountryName,
+            Gender = person.Gender,
+            Age = (person.DateOfBirth != null) ? Math.Round((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : null,
+            Country = person.Country?.CountryName
         };
     }
-
 }
-

@@ -160,3 +160,7 @@
 /Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/Newtonsoft.Json.dll
 /Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/Newtonsoft.Json.Bson.dll
 /Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/Rotativa.AspNetCore.dll
+/Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/Repositories.dll
+/Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/RepositoryContracts.dll
+/Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/RepositoryContracts.pdb
+/Users/macbookpro/Desktop/netgyak/MyWebApi/bin/Debug/net8.0/Repositories.pdb

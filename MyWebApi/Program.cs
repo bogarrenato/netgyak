@@ -2,6 +2,8 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using Services;
+using Repositories;
+using RepositoryContracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICountriesService, CountriesService>();
 builder.Services.AddScoped<IPersonsService, PersonsService>();
+builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
+builder.Services.AddScoped<IPersonsRepository, PersonsRepository>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -41,3 +45,4 @@ app.Run();
 // {
 //     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 // }
+

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Entities;
 using Microsoft.EntityFrameworkCore;
+using RepositoryContracts;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
@@ -9,156 +10,138 @@ namespace Services;
 
 public class PersonsService : IPersonsService
 {
+    //private field
+    private readonly IPersonsRepository _personsRepository;
 
-    private readonly ApplicationDbContext _db;
-    private readonly ICountriesService _countriesService;
-
-    public PersonsService(ApplicationDbContext personsDbContext, ICountriesService countriesService)
+    //constructor
+    public PersonsService(IPersonsRepository personsRepository)
     {
-        _db = personsDbContext;
-        _countriesService = countriesService;
+        _personsRepository = personsRepository;
     }
 
-    //Check if personAddRequest is not null
-    //Validate all properties of "personAddRequest"
-    //convert "personAddRequest" from "PersonAddRequest" to type "Person"
-    //Generate a new PersonId
-    //Then add it into List<Person>
-    //Return PersonResponse object with generated PersonID
+
     public async Task<PersonResponse> AddPerson(PersonAddRequest? personAddRequest)
     {
+        //check if PersonAddRequest is not null
         if (personAddRequest == null)
         {
             throw new ArgumentNullException(nameof(personAddRequest));
         }
 
-        //Validate PersonName
-        //Validation can happen only in a context
+        //Model validation
         ValidationHelper.ModelValidation(personAddRequest);
-        //convert personAddRequest to Person type
 
+        //convert personAddRequest into Person type
         Person person = personAddRequest.ToPerson();
 
-        //generate new PersonID
+        //generate PersonID
         person.PersonID = Guid.NewGuid();
 
-        //Add person object to data store
-        _db.Persons.Add(person);
-        await _db.SaveChangesAsync();
-
-        // Stored procedure
-        // _db.sp_InsertPerson(person);
+        //add person object to persons list
+        await _personsRepository.AddPerson(person);
 
         //convert the Person object into PersonResponse type
         return person.ToPersonResponse();
-
     }
+
 
     public async Task<List<PersonResponse>> GetAllPersons()
     {
+        var persons = await _personsRepository.GetAllPersons();
 
-        var persons = await _db.Persons.Include("Country").ToListAsync();
-        return persons.Select(temp => temp.ToPersonResponse()).ToList();
-
-        // return _db.sp_GetAllPersons().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
+        return persons
+          .Select(temp => temp.ToPersonResponse()).ToList();
     }
 
 
-    //Check if personId is not null
-    //Get matching person from List<Person> based on personID
-    //Convert matching person object from Person to PersonResponse type
-    //Return PersonResponse object
     public async Task<PersonResponse?> GetPersonByPersonID(Guid? personID)
     {
         if (personID == null)
-        {
             return null;
-        }
 
-        Person? person = await _db.Persons
-            .Include("Country")
-            .FirstOrDefaultAsync(temp => temp.PersonID == personID);
+        Person? person = await _personsRepository.GetPersonByPersonID(personID.Value);
 
         if (person == null)
-        {
             return null;
-        }
 
         return person.ToPersonResponse();
     }
 
 
-    //Check if searchBy is not null
-    //Get Matching persons from List<Person> based on searchBy and searchString
-    //Convert matching person objects from Person to PersonResponse type
-    //Return all matching PersonResponse objects
     public async Task<List<PersonResponse>> GetFilteredPersons(string searchBy, string? searchString)
     {
-        List<PersonResponse> allPersons = await GetAllPersons();
-        List<PersonResponse> matchingPersons = allPersons;
-
-        if (string.IsNullOrEmpty(searchBy) || string.IsNullOrEmpty(searchString))
+        List<Person> persons = searchBy switch
         {
-            return matchingPersons;
-        }
+            nameof(PersonResponse.PersonName) =>
+             await _personsRepository.GetFilteredPersons(temp =>
+             temp.PersonName.Contains(searchString)),
+
+            nameof(PersonResponse.Email) =>
+             await _personsRepository.GetFilteredPersons(temp =>
+             temp.Email.Contains(searchString)),
+
+            nameof(PersonResponse.DateOfBirth) =>
+             await _personsRepository.GetFilteredPersons(temp =>
+             temp.DateOfBirth.Value.ToString("dd MMMM yyyy").Contains(searchString)),
 
 
-        switch (searchBy)
-        {
-            case nameof(Person.PersonName):
-                matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.PersonName) ? temp.PersonName.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                break;
+            nameof(PersonResponse.Gender) =>
+             await _personsRepository.GetFilteredPersons(temp =>
+             temp.Gender.Contains(searchString)),
 
-            case nameof(Person.Email):
-                matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.Email) ? temp.Email.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                break;
+            nameof(PersonResponse.CountryID) =>
+             await _personsRepository.GetFilteredPersons(temp =>
+             temp.Country.CountryName.Contains(searchString)),
 
-            case nameof(Person.DateOfBirth):
-                matchingPersons = allPersons.Where(temp => (temp.DateOfBirth != null) ? temp.DateOfBirth.Value.ToString("dd MMMM yyyy").Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                break;
+            nameof(PersonResponse.Address) =>
+            await _personsRepository.GetFilteredPersons(temp =>
+            temp.Address.Contains(searchString)),
 
-            case nameof(Person.Gender):
-                matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.Gender) ? temp.Gender.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                break;
-
-            case nameof(Person.Address):
-                matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.Address) ? temp.Address.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                break;
-
-            default:
-                matchingPersons = allPersons;
-                break;
-        }
-
-        return matchingPersons;
+            _ => await _personsRepository.GetAllPersons()
+        };
+        return persons.Select(temp => temp.ToPersonResponse()).ToList();
     }
+
 
     public async Task<List<PersonResponse>> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderOptions sortOrder)
     {
         if (string.IsNullOrEmpty(sortBy))
-        {
             return allPersons;
-        }
 
-        List<PersonResponse> sortedPersons = (sortBy, sortOrder)
-        switch
+        List<PersonResponse> sortedPersons = (sortBy, sortOrder) switch
         {
-            (nameof(PersonResponse.PersonName), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.PersonName).ToList(),
-            (nameof(PersonResponse.PersonName), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.PersonName).ToList(),
-            (nameof(PersonResponse.Email), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.Email).ToList(),
-            (nameof(PersonResponse.Email), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.Email).ToList(),
+            (nameof(PersonResponse.PersonName), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.PersonName, StringComparer.OrdinalIgnoreCase).ToList(),
+
+            (nameof(PersonResponse.PersonName), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.PersonName, StringComparer.OrdinalIgnoreCase).ToList(),
+
+            (nameof(PersonResponse.Email), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.Email, StringComparer.OrdinalIgnoreCase).ToList(),
+
+            (nameof(PersonResponse.Email), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.Email, StringComparer.OrdinalIgnoreCase).ToList(),
+
             (nameof(PersonResponse.DateOfBirth), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.DateOfBirth).ToList(),
+
             (nameof(PersonResponse.DateOfBirth), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.DateOfBirth).ToList(),
-            (nameof(PersonResponse.Address), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.Address).ToList(),
-            (nameof(PersonResponse.Address), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.Address).ToList(),
+
             (nameof(PersonResponse.Age), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.Age).ToList(),
+
             (nameof(PersonResponse.Age), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.Age).ToList(),
-            (nameof(PersonResponse.ReceiveNewsLetters), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.ReceiveNewsLetters).ToList(),
-            (nameof(PersonResponse.ReceiveNewsLetters), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.ReceiveNewsLetters).ToList(),
-            (nameof(PersonResponse.Country), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.Country).ToList(),
-            (nameof(PersonResponse.Country), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.Country).ToList(),
+
             (nameof(PersonResponse.Gender), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.Gender, StringComparer.OrdinalIgnoreCase).ToList(),
-            (nameof(PersonResponse.Gender), SortOrderOptions.DESC) => allPersons.OrderBy(temp => temp.Gender, StringComparer.OrdinalIgnoreCase).ToList(),
+
+            (nameof(PersonResponse.Gender), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.Gender, StringComparer.OrdinalIgnoreCase).ToList(),
+
+            (nameof(PersonResponse.Country), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.Country, StringComparer.OrdinalIgnoreCase).ToList(),
+
+            (nameof(PersonResponse.Country), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.Country, StringComparer.OrdinalIgnoreCase).ToList(),
+
+            (nameof(PersonResponse.Address), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.Address, StringComparer.OrdinalIgnoreCase).ToList(),
+
+            (nameof(PersonResponse.Address), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.Address, StringComparer.OrdinalIgnoreCase).ToList(),
+
+            (nameof(PersonResponse.ReceiveNewsLetters), SortOrderOptions.ASC) => allPersons.OrderBy(temp => temp.ReceiveNewsLetters).ToList(),
+
+            (nameof(PersonResponse.ReceiveNewsLetters), SortOrderOptions.DESC) => allPersons.OrderByDescending(temp => temp.ReceiveNewsLetters).ToList(),
+
             _ => allPersons
         };
 
@@ -166,34 +149,22 @@ public class PersonsService : IPersonsService
     }
 
 
-
-    //Check if personUpdateRequest is not null
-    //Validate all properties of "personUpdateRequest"
-    //Get the matching "Person" object from List<Person> based on personID
-    //Check if matching "Person" object is not null
-    //Update the properties of matching "Person" object with the properties of "personUpdateRequest"
-    //Convert matching "Person" object from Person to PersonResponse type
-    //Return PersonResponse object
     public async Task<PersonResponse> UpdatePerson(PersonUpdateRequest? personUpdateRequest)
     {
         if (personUpdateRequest == null)
-        {
-            throw new ArgumentNullException(nameof(Person));
-        }
+            throw new ArgumentNullException(nameof(personUpdateRequest));
 
-        //Validate PersonName
-        //Validation can happen only in a context
+        //validation
         ValidationHelper.ModelValidation(personUpdateRequest);
 
-        //Get the matching person object from data store
-        Person? matchingPerson = await _db.Persons.FirstOrDefaultAsync(temp => temp.PersonID == personUpdateRequest.PersonID);
-
+        //get matching person object to update
+        Person? matchingPerson = await _personsRepository.GetPersonByPersonID(personUpdateRequest.PersonID);
         if (matchingPerson == null)
         {
-            throw new ArgumentException("Given person id does not exist");
+            throw new ArgumentException("Given person id doesn't exist");
         }
 
-        //Update the person object with the new values
+        //update all details
         matchingPerson.PersonName = personUpdateRequest.PersonName;
         matchingPerson.Email = personUpdateRequest.Email;
         matchingPerson.DateOfBirth = personUpdateRequest.DateOfBirth;
@@ -202,17 +173,11 @@ public class PersonsService : IPersonsService
         matchingPerson.Address = personUpdateRequest.Address;
         matchingPerson.ReceiveNewsLetters = personUpdateRequest.ReceiveNewsLetters;
 
-        _db.SaveChanges();
+        await _personsRepository.UpdatePerson(matchingPerson); //UPDATE
+
         return matchingPerson.ToPersonResponse();
     }
 
-
-
-    //Check if PersonId is not null
-    //Get the MAtching "Person" object fron List<Person> based on PersonID
-    //Check if matching "Person" object is not null
-    //Remove the matching "Person" object from List<Person>
-    //Return Boolean value indicating the status of deletion was successful or not
     public async Task<bool> DeletePerson(Guid? personID)
     {
         if (personID == null)
@@ -220,16 +185,14 @@ public class PersonsService : IPersonsService
             throw new ArgumentNullException(nameof(personID));
         }
 
-        Person? person = await _db.Persons.FirstOrDefaultAsync(temp => temp.PersonID == personID);
-
+        Person? person = await _personsRepository.GetPersonByPersonID(personID.Value);
         if (person == null)
-        {
             return false;
-        }
 
-        _db.Persons.Remove(_db.Persons.First(temp => temp.PersonID == personID));
-        await _db.SaveChangesAsync();
+        await _personsRepository.DeletePersonByPersonID(personID.Value);
 
         return true;
     }
+
+
 }

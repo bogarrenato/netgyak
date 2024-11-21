@@ -1,0 +1,16 @@
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/bin/Debug/net8.0/RepositoryContracts.deps.json
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/bin/Debug/net8.0/RepositoryContracts.dll
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/bin/Debug/net8.0/RepositoryContracts.pdb
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/bin/Debug/net8.0/Entities.dll
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/bin/Debug/net8.0/Entities.pdb
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/Debug/net8.0/RepositoryContracts.csproj.AssemblyReference.cache
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/Debug/net8.0/RepositoryContracts.GeneratedMSBuildEditorConfig.editorconfig
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/Debug/net8.0/RepositoryContracts.AssemblyInfoInputs.cache
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/Debug/net8.0/RepositoryContracts.AssemblyInfo.cs
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/Debug/net8.0/RepositoryContracts.csproj.CoreCompileInputs.cache
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/Debug/net8.0/RepositoryContracts.sourcelink.json
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/Debug/net8.0/Reposito.28D4BA81.Up2Date
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/Debug/net8.0/RepositoryContracts.dll
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/Debug/net8.0/refint/RepositoryContracts.dll
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/Debug/net8.0/RepositoryContracts.pdb
+/Users/macbookpro/Desktop/netgyak/RepositoryContracts/obj/Debug/net8.0/ref/RepositoryContracts.dll
